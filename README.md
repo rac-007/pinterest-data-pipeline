@@ -12,7 +12,7 @@ In order to understand the data Pinterest's Engineers are likely to work with, t
 
 When run the provided script and it prints out pin_result, geo_result and user_result. These each represent one entry in their corresponding table. Lets have a look how these results look like:
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ## Table of Contents
 <!-- no toc -->
@@ -28,7 +28,7 @@ This project aims to build a data pipeline on AWS that mimics Pinterest's data p
 
 ## Architecture
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 ## Prerequisites
 
