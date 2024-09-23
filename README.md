@@ -42,24 +42,18 @@ Before you begin, ensure you have the following:
 
 ## Pipeline Tools
 
-[AWS MSK](https://aws.amazon.com/msk/)- Amazon Managed Streaming for Apache Kafka (Amazon MSK) plays a crucial role in data pipeline project by providing a fully managed Apache Kafka service. This service is essential for real-time data streaming and integration, which forms the backbone of the pipeline. Amazon MSK is a critical component of data pipeline, providing robust data ingestion, streaming, and integration capabilities.
-- [AWS MSK Connect](https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html)- MSK Connect is a feature of Amazon MSK that makes it easy for developers to stream data to and from their Apache Kafka clusters. From the developer guide:
->With MSK Connect, you can deploy fully managed connectors built for Kafka Connect that move data into or pull data from popular data stores like Amazon S3... Use source connectors to import data from external systems into your topics. With sink connectors, you can export data from your topics to external systems.
- 
+- [AWS MSK](https://aws.amazon.com/msk/)- Amazon Managed Streaming for Apache Kafka (Amazon MSK) plays a crucial role in data pipeline project by providing a fully managed Apache Kafka service. This service is essential for real-time data streaming and integration, which forms the backbone of the pipeline. Amazon MSK is a critical component of data pipeline, providing robust data ingestion, streaming, and integration capabilities.
+- [AWS MSK Connect](https://docs.aws.amazon.com/msk/latest/developerguide/msk-connect.html)- MSK Connect is a feature of Amazon MSK that makes it easy for developers to stream data to and from their Apache Kafka clusters. With MSK Connect, you can deploy fully managed connectors built for Kafka Connect that move data into or pull data from popular data stores like Amazon S3. Use source connectors to import data from external systems into your topics. With sink connectors, you can export data from your topics to external systems.
 - [Apache Kafka](https://kafka.apache.org/)- Apache Kafka is an open-source distributed event streaming platform designed to handle real-time data feeds with high throughput, fault tolerance, and scalability.
 - [Kafka REST Proxy](https://docs.confluent.io/platform/current/kafka-rest/index.html) 
->The Confluent REST Proxy provides a RESTful interface to an Apache Kafka® cluster, making it easy to produce and consume messages, view the state of the cluster, and perform administrative actions without using the native Kafka protocol or clients.
->Kafka REST Proxy is a RESTful web service interface for interacting with an Apache Kafka cluster. It provides a way to produce and consume messages, manage topics, and inspect Kafka's state over HTTP without needing to use the native Kafka clients directly. This is particularly useful for applications and systems that do not have direct access to Kafka's native APIs, or when you need a simpler, language-agnostic way to interact with Kafka.
-
-- [Apache Spark](https://spark.apache.org/docs/3.4.1/) - Apache Spark™ is a multi-language engine for executing data engineering, data science, and machine learning on single-node machines or clusters. From the docs:
->Spark provides high-level APIs in Java, Scala, Python, and R, and an optimized engine that supports general execution graphs. It also supports a rich set of higher-level tools including Spark SQL for SQL and structured data processing, pandas API on Spark for pandas workloads, MLlib for machine learning, GraphX for graph processing, and Structured Streaming for incremental computation and stream processing.
+The Confluent REST Proxy provides a RESTful interface to an Apache Kafka cluster, making it easy to produce and consume messages, view the state of the cluster, and perform administrative actions without using the native Kafka protocol or clients.
+Kafka REST Proxy is a RESTful web service interface for interacting with an Apache Kafka cluster. It provides a way to produce and consume messages, manage topics, and inspect Kafka's state over HTTP without needing to use the native Kafka clients directly. This is particularly useful for applications and systems that do not have direct access to Kafka's native APIs, or when you need a simpler, language-agnostic way to interact with Kafka.
+- [Apache Spark](https://spark.apache.org/docs/3.4.1/) - Apache Spark is a multi-language engine for executing data engineering, data science, and machine learning on single-node machines or clusters. Spark provides high-level APIs in Java, Scala, Python, and R, and an optimized engine that supports general execution graphs. It also supports a rich set of higher-level tools including Spark SQL for SQL and structured data processing, pandas API on Spark for pandas workloads, MLlib for machine learning, GraphX for graph processing, and Structured Streaming for incremental computation and stream processing.
 - [AWS API Gateway](https://aws.amazon.com/api-gateway/)- Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. APIs act as the "front door" for applications to access data, business logic, or functionality from your backend services. 
 - [PySpark](https://spark.apache.org/docs/3.4.1/api/python/index.html)- PySpark is the Python API for Apache Spark.
->It enables you to perform real-time, large-scale data processing in a distributed environment using Python. It also provides a PySpark shell for interactively analyzing your data. PySpark combines Python’s learnability and ease of use with the power of Apache Spark to enable processing and analysis of data at any size for everyone familiar with Python.
-- [Databricks](https://docs.databricks.com/en/index.html)- This project uses the Databricks platform to perform Spark processing of batch and streaming data. From the documentation:
->Databricks is a unified, open analytics platform for building, deploying, sharing, and maintaining enterprise-grade data, analytics, and AI solutions at scale. The Databricks Lakehouse Platform integrates with cloud storage and security in your cloud account, and manages and deploys cloud infrastructure on your behalf.
-- [Managed Workflows for Apache Airflow](https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html) - Apache Airflow enables users to use Python to build scheduling workflows for batch-oriented processes. This project uses MWAA to orchestrate batch processing on the Databricks platform. From AWS docs:
->With Amazon MWAA, you can use Apache Airflow and Python to create workflows without having to manage the underlying infrastructure for scalability, availability, and security.
+It enables you to perform real-time, large-scale data processing in a distributed environment using Python. It also provides a PySpark shell for interactively analyzing your data. PySpark combines Python’s learnability and ease of use with the power of Apache Spark to enable processing and analysis of data at any size for everyone familiar with Python.
+- [Databricks](https://docs.databricks.com/en/index.html)- This project uses the Databricks platform to perform Spark processing of batch and streaming data. Databricks is a unified, open analytics platform for building, deploying, sharing, and maintaining enterprise-grade data, analytics, and AI solutions at scale. The Databricks Lakehouse Platform integrates with cloud storage and security in your cloud account, and manages and deploys cloud infrastructure on your behalf.
+- [Managed Workflows for Apache Airflow](https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html) - Apache Airflow enables users to use Python to build scheduling workflows for batch-oriented processes. This project uses MWAA to orchestrate batch processing on the Databricks platform. With Amazon MWAA, you can use Apache Airflow and Python to create workflows without having to manage the underlying infrastructure for scalability, availability, and security.
 - [AWS Kinesis](https://aws.amazon.com/kinesis/) - AWS Kinesis is a managed service for processing and analysing streaming data. In this project I've used Kinesis Data Streams to collect and store data temporarily before using Spark on Databricks to read and process the stream.
 
 ## Pipeline Building
@@ -71,14 +65,16 @@ In order to create .pem file locally on VSCODE, content of the key is needed to 
 3.  Navigate to the EC2 console and select this instance, and under the Details section find the Key pair name and make a note of this. Save the previously created file in the VSCode using the following format: Key pair name.pem.
 
 ### Connect to the EC2 instance
-Follow the Connect instructions (SSH client) on the EC2 console to do this
+Follow the Connect instructions (SSH client) on the EC2 console to do this step.
+
 ### Creating an Apache Cluster With AWS MSK
 The first step is to create a kafka cluster, here using AWS MSK. In this project, it was provisioned by the AiCore IT Team. The documentation includes a good guide for [getting started](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html) and you can follow the steps to get a cluster up and running here. 
-### Creating a Client Machine for the Cluster
-The next step is to create an Apache Client to communicate with AWS MSK Cluster. In this project EC2 instance works as Apache Client. It was also provisioned by the AiCore Team. You can Create an Amazon linux EC2 instance free tier, create key pair type - RSA, private key file format - '.pem' and select the security group associated with the Kafka cluster (AWS MSK).
-Next, edit inbound rules to 'All Traffic'.<br>
-### Set up Kafka on the EC2 instance
 
+### Creating a Client Machine for the Cluster
+The next step is to create an Apache Client to communicate with AWS MSK Cluster. In this project EC2 instance works as Apache Client. It was also provisioned by the AiCore Team. You can Create an Amazon linux EC2 instance free tier, create key pair type - RSA, private key file format - **'.pem'** and select the security group associated with the Kafka cluster (AWS MSK).
+Next, edit inbound rules to 'All Traffic'.<br>
+
+### Set up Kafka on the EC2 instance
 Once you get connected to EC2, run the following commands on EC2 instance command line:
 ```
 sudo yum update
@@ -185,7 +181,7 @@ We also need to create an IAM role for the client machine.(For this projects thi
 6. Click on the Add a principal button and select IAM roles as the Principal type
 7. Replace ARN with the "ec2-access-role" ARN you have just copied
 By following the steps above you will be able to now assume the "ec2-access-role", which contains the necessary permissions to authenticate to the MSK cluster.
-![alt text](trust-relation.png)
+![alt text](images/trust-relation.png)
 
 ### Configure your Kafka client to use AWS IAM authentication to the cluster
 To do this, you will need to modify the client.properties file, inside your kafka_folder/bin directory accordingly.
@@ -222,7 +218,7 @@ Topic names should be like this for this project:
 ### Batch Processing:Connect a MSK cluster to a S3 bucket
 In this part I am using MSK Connect to connect the MSK Cluster to a S3 bucket, such that any data going through the cluster will be automatically saved and stored in a dedicated S3 bucket. To do so, we need to create the custom plugin and the connector with MSK Connect from MSK console. A plugin will contain the code that defines the logic of our connector. We will use the client EC2 machine we have previously used to connect to our cluster for this step.
 
-When creating custom plugin we are required to set up Connector configuration settings, that says what kind of this connector is (source or sink)? and here, this is can be thought of as a consumer in the sense that it consumes records from Kafka topics and intigrating with S3 bucket.  
+When creating custom plugin we are required to set up Connector configuration settings, that says what kind of this connector is (source or sink)? and here, this is can be thought of as a consumer in the sense that it consumes records from Kafka topics and integrating with S3 bucket.  
 
 1. First connect to your client EC2 machine and run the code from EC2: Replace the bucket name with the one you've created.
     ```
@@ -274,9 +270,9 @@ The Kafka REST Proxy receives HTTP requests from the Python script, translates t
 ### Building a Kafka REST Proxy integration method for the API.
 In this project an API is created by the Team Admin, next we need to create the resource.
 
-![alt text](create_proxy.png)
+![alt text](images/create_proxy.png)
 After creating the API resource, next integrating the API(REST Proxy) with the Kafka Client EC2(From EC2 details copy the PublicDNS.) and paste it in the URL:"http://your-client-public-dns:8082/{proxy}" and put this value in Endpoint URL. 
-![alt text](proxy_integration.png)
+![alt text](images/proxy_integration.png)
 
 ### Installing Confluent package for REST proxy on EC2 client
 To be able to consume data using MSK from the API we have just created, we will need to download some additional packages on a client EC2 machine, that will be used to communicate with the MSK cluster.
@@ -329,18 +325,22 @@ The file **mount_s3_and_retrieve_pinterest_data.ipynb** is a notebook that was r
 - Encode the secrete key
 - Mount the S3 bucket 
 - Read the JSON format dataset from S3 into Databricks
+
 ### Clean data using Apache Spark on Databricks
 The file **clean_s3_batch_data.ipynb** contains the code for performing the necessary cleaning of the dataframes
+
 ### Querying the cleaned data using Apache Spark on Databricks
 The file **query_batch_data.ipynb** contains the code for querying the dataframes and returning specific insights about the data.
+
 ### Orchestrating automated workflow of notebook on Databricks
 MWAA was used to automate the process of running the batch processing on Databricks. The file 129bc7e0bd61_dag.py is the Python code for a directed acyclic graph (DAG) that orchestrates the running of the batch processing notebook described above. The file was uploaded to the MWAA environment, where Airflow is utilised to connect to and run the Databricks notebook at scheduled intervals, in this case @daily.
+
 ## Stream Processing:AWS Kinesis
 ### Create data streams on Kinesis
 
 The first step in processing streaming data was to create three streams on AWS Kinesis, one for each of the data sources.
-### Create API proxy for uploading data to streams
 
+### Create API proxy for uploading data to streams
 Configuring previously created REST API to allow it to invoke Kinesis actions.
 All necessary permissions has been granted to my aws account by the AiCore Admin to invoke Kinesis actions. I should copy the ARN of the respective Kinesis Access Role for Execution role when creating method.
 
@@ -350,9 +350,11 @@ Select the API, created earlier and start creating a new resource.
 ![alt text](images/create_method.png)
 ![alt text](images/creat_method_2.png)
 Click on the Save button to save the changes.
+
 ### Create, describe and delete streams in Kinesis
 Under the streams resource create a new child resource with the Resource name {stream-name}. After creating this your Resources should look like this:
 ![alt text](images/resource_1.png)
+
 ### Creating the following three Methods for {stream-name} resource: POST, GET and DELETE.
 ### Setting up the GET method.
 In the Create method page you will need to define the following:
@@ -424,8 +426,10 @@ For the other methods, the same settings were used except for:
 ```
 
 After creating the new resources and methods, the API must be redeployed.
+
 ### Sending data to the Kinesis streams
 Running the script [user_posting_emulation_stream_data.py] starts an infinite loop that retrieves records from the RDS database and sends them via the new API to Kinesis.
+
 ### Processing the streaming data in Databricks
 The Jupyter notebook [read_and_process_kinesis_streams.ipynb] contains the code for retrieving the streams from Kinesis, transforming (cleaning) the data, and then loading the data into Delta tables on Databricks cluster. The steps taken in the code are:
 - Import necessary functions and types
